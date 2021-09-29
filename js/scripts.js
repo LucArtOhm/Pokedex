@@ -9,43 +9,43 @@ let pokemonList = [];
 
 let lunala = {
     name: 'Lunala',
-    height: 13\'01\",
+    height: 13,
     type: ['psychich', 'ghost']
   };
 
 let solgaleo = {
     name: 'Solgaleo',
-    height: 11\'02\",
+    height: 11,
     type: ['psyhich', 'steel']
   };
 
 let psyduck = {
     name: 'Psyduck',
-    height: 2\'07\",
+    height: 2,
     type: 'water'
   };
 
 let yveltal = {
     name: 'Yveltal',
-    height: 19\',
+    height: 19,
     type: ['dark', 'flying']
   };
 
 let pilowswine = {
     name: 'Pilowswine',
-    height: 3\'07\",
+    height: 3,
     type: ['ice', 'ground']
   };
 
 let unown = {
     name: 'Unown',
-    height: 1\'08\",
+    height: 1,
     type: 'psychich'
   };
 
 let magnemite = {
     name: 'Magnemite',
-    height: 1\',
+    height: 1,
     type: ['electric', 'steel']
   };
 
