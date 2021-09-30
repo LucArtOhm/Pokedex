@@ -8,12 +8,3 @@ body {
   font-size: 20px;
   font-family: "Merienda One"
 }
-
-ul {
-  list-style-type: circle;
-}
-
-.pokemon-list {
-  display: flex;
-  flex-direction: column;
-}
