@@ -1,10 +1,3 @@
-/*
-* Create a new variable called pokemonList
-* and assign to it a blank array.
-*/
-
-
-
 //Add several objects to the array
 
 let lunala = {
@@ -49,13 +42,11 @@ let magnemite = {
     type: ['electric', 'steel']
   };
 
-//Assigning of named objects to the blank pokemonList array
+//Here comes the 'for loop'
 
-let pokemonList = ['lunala', 'solgaleo', 'psyduck', 'yveltal', 'pilowswine', 'unown', 'magnemite'];
+let pokemonList = ['lunala (height: 13)', 'solgaleo (height: 11)', 'psyduck (height: 2)', 'yveltal (height: 19)', 'pilowswine (height: 3)', 'unown (height: 1)', 'magnemite (height: 1)'];
 let text = '';
 let i = 0
-
-//Here comes the 'for loop'
 
 for (;pokemonList [i];){
   text = text + ' ' + pokemonList [i];
