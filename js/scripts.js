@@ -76,10 +76,10 @@ let pokemonList = [
 
 for (let i = 0; i < pokemonList.length; i++){
   if (pokemonList [i].height > 13 && pokemonList [i].height < 20){
-    document.write (pokemonList [i].name + ' (' + 'height: ' + pokemonList [i].height + ' )' + ' - Wow, she\'s enormous!!!');
+    document.write (pokemonList [i].name + ' (' + 'height: ' + pokemonList [i].height + ')' + ' - Wow, she\'s enormous!!!');
   } else if (pokemonList [i].height > 2){
-    document.write (pokemonList [i].name + ' (' + 'height: ' + pokemonList [i].height + ' )');
+    document.write (pokemonList [i].name + ' (' + 'height: ' + pokemonList [i].height + ')');
   } else {
-    document.write (pokemonList [i].name + ' (' + 'height: ' + pokemonList [i].height + ' )');
+    document.write (pokemonList [i].name + ' (' + 'height: ' + pokemonList [i].height + ')');
   }
 }
