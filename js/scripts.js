@@ -3,7 +3,7 @@
 * and assign to it a blank array.
 */
 
-let pokemonList = [];
+
 
 //Add several objects to the array
 
@@ -51,12 +51,14 @@ let magnemite = {
 
 //Assigning of named objects to the blank pokemonList array
 
-pokemonList = [
-  lunala,
-  solgaleo,
-  psyduck,
-  yveltal,
-  pilowswine,
-  unown,
-  magnemite
-]
+let pokemonList = ['lunala', 'solgaleo', 'psyduck', 'yveltal', 'pilowswine', 'unown', 'magnemite'];
+let text = '';
+let i = 0
+
+//Here comes the 'for loop'
+
+for (;pokemonList [i];){
+  text = text + ' ' + pokemonList [i];
+  i++;
+}
+document.write(text);
