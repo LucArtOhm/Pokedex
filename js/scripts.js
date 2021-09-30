@@ -2,38 +2,74 @@ let pokemonList = [
   lunala = {
       name: 'Lunala',
       height: 13,
-      type: ['psychich', 'ghost']
+      type: ['psychich', 'ghost'],
+      weakness: ['ghost', 'dark']
     },
   solgaleo = {
       name: 'Solgaleo',
       height: 11,
-      type: ['psyhich', 'steel']
+      type: ['ghost', 'fire', 'dark', 'ground']
     },
   psyduck = {
       name: 'Psyduck',
       height: 2,
-      type: 'water'
+      type: 'water',
+      weakness: ['grass', 'electric']
     },
   yveltal = {
       name: 'Yveltal',
       height: 19,
-      type: ['dark', 'flying']
+      type: ['dark', 'flying'],
+      weakness: ['fairy', 'electric', 'ice', 'rock']
     },
-  pilowswine = {
-      name: 'Pilowswine',
+  piloswine = {
+      name: 'Piloswine',
       height: 3,
-      type: ['ice', 'ground']
+      type: ['ice', 'ground'],
+      weakness: ['steel', 'fire', 'grass', 'water', 'fighting']
     },
   unown = {
       name: 'Unown',
       height: 1,
-      type: 'psychich'
+      type: 'psychich',
+      weakness: ['ghost', 'dark', 'bug']
     },
   magnemite = {
       name: 'Magnemite',
       height: 1,
-      type: ['electric', 'steel']
+      type: ['electric', 'steel'],
+      weakness: ['fire', 'fighting', 'ground']
     },
+  mamoswine = {
+      name: 'Mamoswine',
+      height: 8,
+      type: ['ice', 'ground'],
+      weakness: ['steel', 'fire', 'grass', 'water', 'fighting']
+      },
+  eevee = {
+      name: 'Eevee',
+      height: 1,
+      type: ['normal'],
+      weakness: ['fighting']
+      },
+  pikachu = {
+      name: 'Pikachu',
+      height: 1,
+      type: ['electric'],
+      weakness: ['ground']
+      },
+  squirtle = {
+      name: 'Squirtle',
+      height: 2,
+      type: ['water'],
+      weakness: ['grass', 'electric']
+      },
+  poliwag = {
+      name: 'Poliwag',
+      height: 2,
+      type: ['water'],
+      weakness: ['grass', 'electric']
+      },
 ]
 
 //Here comes the 'for loop'
