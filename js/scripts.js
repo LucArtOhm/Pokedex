@@ -2,49 +2,49 @@ let pokemonList = [
   {
     name: 'Lunala',
     height: 13,
-    type: ['psychich', 'ghost'],
-    weakness: ['ghost', 'dark']
+    type: ['psychich', ' ghost'],
+    weakness: ['ghost', ' dark']
   },
   {
     name: 'Solgaleo',
     height: 11,
-    type: ['ghost', 'fire', 'dark', 'ground']
+    type: ['ghost', ' fire', ' dark', ' ground']
   },
   {
     name: 'Psyduck',
     height: 2,
     type: 'water',
-    weakness: ['grass', 'electric']
+    weakness: ['grass', ' electric']
   },
   {
     name: 'Yveltal',
     height: 19,
-    type: ['dark', 'flying'],
-    weakness: ['fairy', 'electric', 'ice', 'rock']
+    type: ['dark', ' flying'],
+    weakness: ['fairy', ' electric', ' ice', ' rock']
   },
   {
     name: 'Piloswine',
     height: 3,
-    type: ['ice', 'ground'],
-    weakness: ['steel', 'fire', 'grass', 'water', 'fighting']
+    type: ['ice', ' ground'],
+    weakness: ['steel', ' fire', ' grass', ' water', ' fighting']
   },
   {
     name: 'Unown',
     height: 1,
     type: 'psychich',
-    weakness: ['ghost', 'dark', 'bug']
+    weakness: ['ghost', ' dark', ' bug']
   },
   {
     name: 'Magnemite',
     height: 1,
-    type: ['electric', 'steel'],
-    weakness: ['fire', 'fighting', 'ground']
+    type: ['electric', ' steel'],
+    weakness: ['fire', ' fighting', ' ground']
   },
   {
     name: 'Mamoswine',
     height: 8,
-    type: ['ice', 'ground'],
-    weakness: ['steel', 'fire', 'grass', 'water', 'fighting']
+    type: ['ice', ' ground'],
+    weakness: ['steel', ' fire', ' grass', ' water', ' fighting']
   },
   {
     name: 'Eevee',
@@ -62,24 +62,30 @@ let pokemonList = [
     name: 'Squirtle',
     height: 2,
     type: ['water'],
-    weakness: ['grass', 'electric']
+    weakness: ['grass', ' electric']
   },
   {
     name: 'Poliwag',
     height: 2,
     type: ['water'],
-    weakness: ['grass', 'electric']
+    weakness: ['grass', ' electric']
   },
 ]
 
-//Here comes the 'for loop'
+//Here comes the 'forEach' loop
 
-for (let i = 0; i < pokemonList.length; i++){
-  if (pokemonList [i].height > 13 && pokemonList [i].height < 20){
-    document.write ('<p>' + pokemonList [i].name + ' (' + 'height: ' + pokemonList [i].height + ')' + ' - Wow, she\'s enormous!!!' + '</p>');
-  } else if (pokemonList [i].height > 2){
-    document.write ('<p>' + pokemonList [i].name + ' (' + 'height: ' + pokemonList [i].height + ')' + '</p>');
-  } else {
-    document.write ('<p>' + pokemonList [i].name + ' (' + 'height: ' + pokemonList [i].height + ')' + '</p>');
+pokemonList.forEach(function(pokemon){
+  document.write(pokemon.name + ' is ' + pokemon.height + ' inches tall, type ' + pokemon.type + ' and has following weaknesses: ' + pokemon.weakness + '.' + '<br>');
+});
+
+
+function divide(dividend, divisor) {
+  if ('divisor' === 0){
+    return 'You are trying to divide by zero.')
+  }else{
+    let result = dividend / divisor;
+    return result;
   }
 }
+
+console.log(divide(4,2));
