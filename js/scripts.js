@@ -75,9 +75,12 @@ let pokemonList = [
 //Here comes the 'forEach' loop
 
 pokemonList.forEach(function(pokemon){
-  document.write(pokemon.name + ' is ' + pokemon.height + ' inches tall, type ' + pokemon.type + ' and has following weaknesses: ' + pokemon.weakness + '.' + '<br>');
+  if (pokemon.height > 13) {
+    document.write('<p>' + pokemon.name + '</p>' + '<p>' + ' Height: ' + pokemon.height + ' Type: ' + pokemon.type + ' Weakness: ' + pokemon.weakness + ' --WOW, SHE\'S ENORMOUS!!!' + '</p>')
+  } else {
+    document.write('<p>' + pokemon.name + '</p>' + '<p>' + ' Height: ' + pokemon.height + ' Type: ' + pokemon.type + ' Weakness: ' + pokemon.weakness + '</p>')
+  }
 });
-
 
 function divide(dividend, divisor) {
   if ('divisor' === 0){
