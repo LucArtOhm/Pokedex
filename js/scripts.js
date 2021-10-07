@@ -82,13 +82,13 @@ pokemonList.forEach(function(pokemon){
   }
 });
 
-function divide(dividend, divisor) {
+/*function divide(dividend, divisor) {
   if ('divisor' === 0){
     return 'You are trying to divide by zero.')
   }else{
     let result = dividend / divisor;
     return result;
   }
-}
+}*/
 
 console.log(divide(4,2));
