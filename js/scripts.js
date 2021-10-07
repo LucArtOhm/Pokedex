@@ -1,5 +1,8 @@
- //wrap PokemonList array in an IIFE to avoid accidentally accessing the global state
-(function(){
+//1. Wrap PokemonList array in an IIFE to avoid accidentally accessing the global state.
+//2. Create new pokemonRepository variable to hold what your IIFE will return, then assign the IIFE to that variable.
+
+
+let pokemonRepository = (function(){
   let pokemonList = [
     {
       name: 'Lunala',
