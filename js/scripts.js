@@ -1,77 +1,79 @@
-let pokemonList = [
-  {
-    name: 'Lunala',
-    height: 13,
-    type: ['psychich', ' ghost'],
-    weakness: ['ghost', ' dark']
-  },
-  {
-    name: 'Solgaleo',
-    height: 11,
-    type: ['ghost', ' fire', ' dark', ' ground']
-  },
-  {
-    name: 'Psyduck',
-    height: 2,
-    type: 'water',
-    weakness: ['grass', ' electric']
-  },
-  {
-    name: 'Yveltal',
-    height: 19,
-    type: ['dark', ' flying'],
-    weakness: ['fairy', ' electric', ' ice', ' rock']
-  },
-  {
-    name: 'Piloswine',
-    height: 3,
-    type: ['ice', ' ground'],
-    weakness: ['steel', ' fire', ' grass', ' water', ' fighting']
-  },
-  {
-    name: 'Unown',
-    height: 1,
-    type: 'psychich',
-    weakness: ['ghost', ' dark', ' bug']
-  },
-  {
-    name: 'Magnemite',
-    height: 1,
-    type: ['electric', ' steel'],
-    weakness: ['fire', ' fighting', ' ground']
-  },
-  {
-    name: 'Mamoswine',
-    height: 8,
-    type: ['ice', ' ground'],
-    weakness: ['steel', ' fire', ' grass', ' water', ' fighting']
-  },
-  {
-    name: 'Eevee',
-    height: 1,
-    type: ['normal'],
-    weakness: ['fighting']
-  },
-  {
-    name: 'Pikachu',
-    height: 1,
-    type: ['electric'],
-    weakness: ['ground']
-  },
-  {
-    name: 'Squirtle',
-    height: 2,
-    type: ['water'],
-    weakness: ['grass', ' electric']
-  },
-  {
-    name: 'Poliwag',
-    height: 2,
-    type: ['water'],
-    weakness: ['grass', ' electric']
-  },
-]
-
+ //wrap PokemonList array in an IIFE to avoid accidentally accessing the global state
+(function(){
+  let pokemonList = [
+    {
+      name: 'Lunala',
+      height: 13,
+      type: ['psychich', ' ghost'],
+      weakness: ['ghost', ' dark']
+    },
+    {
+      name: 'Solgaleo',
+      height: 11,
+      type: ['ghost', ' fire', ' dark', ' ground']
+    },
+    {
+      name: 'Psyduck',
+      height: 2,
+      type: 'water',
+      weakness: ['grass', ' electric']
+    },
+    {
+      name: 'Yveltal',
+      height: 19,
+      type: ['dark', ' flying'],
+      weakness: ['fairy', ' electric', ' ice', ' rock']
+    },
+    {
+      name: 'Piloswine',
+      height: 3,
+      type: ['ice', ' ground'],
+      weakness: ['steel', ' fire', ' grass', ' water', ' fighting']
+    },
+    {
+      name: 'Unown',
+      height: 1,
+      type: 'psychich',
+      weakness: ['ghost', ' dark', ' bug']
+    },
+    {
+      name: 'Magnemite',
+      height: 1,
+      type: ['electric', ' steel'],
+      weakness: ['fire', ' fighting', ' ground']
+    },
+    {
+      name: 'Mamoswine',
+      height: 8,
+      type: ['ice', ' ground'],
+      weakness: ['steel', ' fire', ' grass', ' water', ' fighting']
+    },
+    {
+      name: 'Eevee',
+      height: 1,
+      type: ['normal'],
+      weakness: ['fighting']
+    },
+    {
+      name: 'Pikachu',
+      height: 1,
+      type: ['electric'],
+      weakness: ['ground']
+    },
+    {
+      name: 'Squirtle',
+      height: 2,
+      type: ['water'],
+      weakness: ['grass', ' electric']
+    },
+    {
+      name: 'Poliwag',
+      height: 2,
+      type: ['water'],
+      weakness: ['grass', ' electric']
+    },
+  ]
+})();
 //Here comes the 'forEach' loop
 
 pokemonList.forEach(function(pokemon){
