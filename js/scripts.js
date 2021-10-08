@@ -1,5 +1,6 @@
 //1. Wrap PokemonList array in an IIFE to avoid accidentally accessing the global state.
 //2. Create new pokemonRepository variable to hold what your IIFE will return, then assign the IIFE to that variable.
+//3.
 
 
 let pokemonRepository = (function(){
@@ -75,8 +76,25 @@ let pokemonRepository = (function(){
       type: ['water'],
       weakness: ['grass', ' electric']
     },
-  ]
+  ];
+
+  function getAll(){
+    return pokemonList;
+  }
+
+  function add(item){
+    pokemonList.push (item);
+  }
+
+//the IIFE returns only an object with the same names for keys as values
+
+  return{
+    add: add,
+    getAll: getAll
+  };
+
 })();
+
 //Here comes the 'forEach' loop
 
 pokemonList.forEach(function(pokemon){
