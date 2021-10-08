@@ -95,9 +95,9 @@ let pokemonRepository = (function(){
 
 })();
 
-//Here comes the 'forEach' loop
+//Here comes the 'forEach' loop, now updated so that it is accessed throught the IIFE
 
-pokemonList.forEach(function(pokemon){
+pokemonRepository.getAll().forEach(function(pokemon){
   if (pokemon.height > 13) {
     document.write('<p>' + pokemon.name + '</p>' + '<p>' + ' Height: ' + pokemon.height + ' Type: ' + pokemon.type + ' Weakness: ' + pokemon.weakness + ' --WOW, SHE\'S ENORMOUS!!!' + '</p>')
   } else {
