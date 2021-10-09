@@ -105,6 +105,10 @@ let pokemonRepository = (function(){
     pokemonList.appendChild(listpokemon);
   }
 
+  function showDetails(pokemon){
+    console.log()
+  }
+
 //the IIFE returns only an object with the same names for keys as values
 
   return{
