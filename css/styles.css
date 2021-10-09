@@ -3,14 +3,30 @@ body {
   color: black;
   font-size: 20px;
   font-family: "Merienda One";
+  text-align: center;
 }
 
 p, h1 {
   text-align: center;
 }
 
-button-class {
-  border: 3px black;
-  height: 55px;
-  margin-bottom: 12px;
+.pokemon-list {
+  list-style: none;
+  padding: 0;
+}
+
+.button-class {
+  margin: 10px;
+  background-color: black;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 25px;
+  color: gold;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  display: inline-block;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
 }

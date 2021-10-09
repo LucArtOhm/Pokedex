@@ -127,6 +127,6 @@ pokemonRepository.getAll().forEach(function(pokemon){
     let result = dividend / divisor;
     return result;
   }
-}*/
+}
 
-console.log(divide(4,2));
+console.log(divide(4,2));*/
