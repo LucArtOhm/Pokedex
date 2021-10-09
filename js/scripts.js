@@ -100,7 +100,9 @@ let pokemonRepository = (function(){
 let ul = document.querySelector ('.pokemonList');
 
 pokemonRepository.getAll().forEach(function(.pokemonList){
-
+  let listItem = document.createElement('li');
+  let button = document.createElement('button');
+  button.innertext = pokemonName;
 });
 
 /*function divide(dividend, divisor) {
