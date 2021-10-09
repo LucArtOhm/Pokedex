@@ -103,6 +103,7 @@ pokemonRepository.getAll().forEach(function(.pokemonList){
   let listItem = document.createElement('li');
   let button = document.createElement('button');
   button.innertext = pokemonName;
+  button.classList.add(buttonStyle);
 });
 
 /*function divide(dividend, divisor) {
