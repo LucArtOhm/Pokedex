@@ -104,6 +104,8 @@ pokemonRepository.getAll().forEach(function(.pokemonList){
   let button = document.createElement('button');
   button.innertext = pokemonName;
   button.classList.add(buttonStyle);
+  listItem.appendChild(button);
+  ul.appendChild(listItem);
 });
 
 /*function divide(dividend, divisor) {
