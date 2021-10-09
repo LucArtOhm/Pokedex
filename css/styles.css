@@ -9,7 +9,7 @@ p, h1 {
   text-align: center;
 }
 
-buttonStyle {
+button-class {
   border: 3px black;
   height: 55px;
   margin-bottom: 12px;

@@ -81,31 +81,32 @@ let pokemonRepository = (function(){
   function getAll(){
     return pokemonList;
   }
-
   function add(item){
     pokemonList.push (item);
+  }
+  function addListItem(pokemon){
+    let pokemonList = document.querySelector ('.pokemon-list');
+    let listpokemon = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('button-class');
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
   }
 
 //the IIFE returns only an object with the same names for keys as values
 
   return{
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    addListItem: addListItem
   };
-
 })();
 
 //Here comes the 'forEach' loop, now updated so that it is accessed throught the IIFE
 
-let ul = document.querySelector ('.pokemonList');
-
-pokemonRepository.getAll().forEach(function(.pokemonList){
-  let listItem = document.createElement('li');
-  let button = document.createElement('button');
-  button.innertext = pokemonName;
-  button.classList.add(buttonStyle);
-  listItem.appendChild(button);
-  ul.appendChild(listItem);
+pokemonRepository.getAll().forEach(function(pokemon){
+  pokemonRepository.addListItem(pokemon);
 });
 
 /*function divide(dividend, divisor) {
