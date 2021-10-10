@@ -30,3 +30,9 @@ p, h1 {
   transition-duration: 0.4s;
   cursor: pointer;
 }
+
+/* reduces the opacity of the button to 80% */
+.button-class:focus,
+.button-class:hover {
+  opacity: 0.8;
+}
