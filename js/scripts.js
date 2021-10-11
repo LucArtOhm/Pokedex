@@ -35,6 +35,7 @@ let pokemonRepository = (function(){
     pokemonList.appendChild(listpokemon);
   }
 
+//With this I should get the Pokemon's details logged to the console upon clicking its button as this function executes loadDetails function
   function showDetails(pokemon){
     loadDetails(pokemon).then(function () {
       console.log(pokemon);
