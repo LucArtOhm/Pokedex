@@ -36,7 +36,9 @@ let pokemonRepository = (function(){
   }
 
   function showDetails(pokemon){
-    console.log()
+    loadDetails(pokemon).then(function () {
+      console.log(pokemon);
+    });
   }
 
 //the IIFE returns only an object with the same names for keys as values
