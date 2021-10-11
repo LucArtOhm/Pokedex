@@ -1,80 +1,7 @@
-//1. Wrap PokemonList array in an IIFE to avoid accidentally accessing the global state.
-//2. Create new pokemonRepository variable to hold what your IIFE will return, then assign the IIFE to that variable.
 
 let pokemonRepository = (function(){
-  let pokemonList = [
-    {
-      name: 'Lunala',
-      height: 13,
-      type: ['psychich', ' ghost'],
-      weakness: ['ghost', ' dark']
-    },
-    {
-      name: 'Solgaleo',
-      height: 11,
-      type: ['ghost', ' fire', ' dark', ' ground']
-    },
-    {
-      name: 'Psyduck',
-      height: 2,
-      type: 'water',
-      weakness: ['grass', ' electric']
-    },
-    {
-      name: 'Yveltal',
-      height: 19,
-      type: ['dark', ' flying'],
-      weakness: ['fairy', ' electric', ' ice', ' rock']
-    },
-    {
-      name: 'Piloswine',
-      height: 3,
-      type: ['ice', ' ground'],
-      weakness: ['steel', ' fire', ' grass', ' water', ' fighting']
-    },
-    {
-      name: 'Unown',
-      height: 1,
-      type: 'psychich',
-      weakness: ['ghost', ' dark', ' bug']
-    },
-    {
-      name: 'Magnemite',
-      height: 1,
-      type: ['electric', ' steel'],
-      weakness: ['fire', ' fighting', ' ground']
-    },
-    {
-      name: 'Mamoswine',
-      height: 8,
-      type: ['ice', ' ground'],
-      weakness: ['steel', ' fire', ' grass', ' water', ' fighting']
-    },
-    {
-      name: 'Eevee',
-      height: 1,
-      type: ['normal'],
-      weakness: ['fighting']
-    },
-    {
-      name: 'Pikachu',
-      height: 1,
-      type: ['electric'],
-      weakness: ['ground']
-    },
-    {
-      name: 'Squirtle',
-      height: 2,
-      type: ['water'],
-      weakness: ['grass', ' electric']
-    },
-    {
-      name: 'Poliwag',
-      height: 2,
-      type: ['water'],
-      weakness: ['grass', ' electric']
-    },
-  ];
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   function add(pokemon){
     if(
@@ -94,7 +21,6 @@ let pokemonRepository = (function(){
   }
 
 //new function to simplify the forEach loop
-
   function addListItem(pokemon){
     let pokemonList = document.querySelector ('.pokemon-list');
     let listpokemon = document.createElement('li');
@@ -114,7 +40,6 @@ let pokemonRepository = (function(){
   }
 
 //the IIFE returns only an object with the same names for keys as values
-
   return{
     add: add,
     getAll: getAll,
@@ -122,8 +47,53 @@ let pokemonRepository = (function(){
   };
 })();
 
-//Here comes the 'forEach' loop, now updated so that it is accessed throught the IIFE
+//add loadList function to fetch data from API
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
 
+  return{
+    add: add,
+    getAll: getAll,
+    loadList: loadList
+  };
+})();
+
+//add loadDetails function to load the detailed data for a given Pokemon
+function loadDetails(item) {
+  let url = item.detailsUrl;
+  return fetch(url).then(function (response) {
+    return response.json();
+  }).then (function (details) {
+    //Now we add the details to the item
+    item.imageUrl = details.sprites.front_default;
+    item.height = details.types;
+  }).catch(function (e) {
+    console.error (e);
+  });
+}
+
+return{
+  add: add,
+  getAll: getAll,
+  loadList: loadList,
+  loadDetails: loadDetails
+};
+})();
+
+//Here comes the 'forEach' loop, now updated so that it is accessed throught the IIFE
 pokemonRepository.getAll().forEach(function(pokemon){
   pokemonRepository.addListItem(pokemon);
 });
