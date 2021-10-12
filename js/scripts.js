@@ -1,21 +1,20 @@
 
-let pokemonRepository = (function(){
+let pokemonRepository = (function() {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-  function add(pokemon){
-    if(
-      typeof pokemon === 'pbject' &&
+  function add(pokemon) {
+    if (
+      typeof pokemon === 'object' &&
       'name' in pokemon &&
       'height' in pokemon &&
       'types' in pokemon
     ) {
       pokemonList.push (pokemon);
     } else {
-      console.log('this is not a pokemon');
+      console.log('pokemon is not correct');
     }
   }
-
   function getAll(){
     return pokemonList;
   }
@@ -27,79 +26,72 @@ let pokemonRepository = (function(){
     let button = document.createElement('button');
     button.innerText = pokemon.name;
     button.classList.add('button-class');
-    //Add event 'click' listener
-    button.addEventListener ('click', function (){
-      showDetails(pokemon);
-    });
     listpokemon.appendChild(button);
     pokemonList.appendChild(listpokemon);
-  }
-
-//With this I should get the Pokemon's details logged to the console upon clicking its button as this function executes loadDetails function
-  function showDetails(pokemon){
-    loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+    //Add event 'click' listener
+    button.addEventListener ('click', function (event) {
+      showDetails(pokemon);
     });
   }
 
-//the IIFE returns only an object with the same names for keys as values
-  return{
-    add: add,
-    getAll: getAll,
-    addListItem: addListItem
-  };
-})();
+  //add loadList function to fetch data from API
+    function loadList() {
+      return fetch(apiUrl).then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        json.results.forEach(function (item) {
+          let pokemon = {
+            name: item.name,
+            detailsUrl: item.url
+          };
+          add(pokemon);
+          console.log(pokemon);
+        });
+      }).catch(function (e) {
+        console.error(e);
+      })
+    }
 
-//add loadList function to fetch data from API
-  function loadList() {
-    return fetch(apiUrl).then(function (response) {
+  // add loadDetails function to load the detailed data for a given Pokemon
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
       return response.json();
-    }).then(function (json) {
-      json.results.forEach(function (item) {
-        let pokemon = {
-          name: item.name,
-          detailsUrl: item.url
-        };
-        add(pokemon);
-      });
+    }).then(function (details) {
+      //Now we add the details to the item
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
     }).catch(function (e) {
-      console.error(e);
-    })
+      console.error (e);
+    });
   }
 
+  //With this I should get the Pokemon's details logged to the console upon clicking its button as this function executes loadDetails function
+  function showDetails(item){
+    pokemonRepository.loadDetails(item).then(function () {
+      console.log(item);
+    });
+  }
+
+  //the IIFE returns only an object with the same names for keys as values
   return{
     add: add,
     getAll: getAll,
-    loadList: loadList
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
+    showDetails: showDetails
   };
-})();
-
-//add loadDetails function to load the detailed data for a given Pokemon
-function loadDetails(item) {
-  let url = item.detailsUrl;
-  return fetch(url).then(function (response) {
-    return response.json();
-  }).then (function (details) {
-    //Now we add the details to the item
-    item.imageUrl = details.sprites.front_default;
-    item.height = details.types;
-  }).catch(function (e) {
-    console.error (e);
-  });
-}
-
-return{
-  add: add,
-  getAll: getAll,
-  loadList: loadList,
-  loadDetails: loadDetails
-};
 })();
 
 //Here comes the 'forEach' loop, now updated so that it is accessed throught the IIFE
-pokemonRepository.getAll().forEach(function(pokemon){
-  pokemonRepository.addListItem(pokemon);
+pokemonRepository.loadList().then(function () {
+  pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  });
 });
+
 
 /*function divide(dividend, divisor) {
   if ('divisor' === 0){
@@ -109,5 +101,4 @@ pokemonRepository.getAll().forEach(function(pokemon){
     return result;
   }
 }
-
 console.log(divide(4,2));*/
