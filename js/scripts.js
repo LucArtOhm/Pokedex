@@ -91,6 +91,7 @@ let pokemonRepository = (function() {
     let closeButtomElement = document.createElement('button');
     closeButtomElement.classList.add('modal-close');
     closeButtomElement.innerText = 'Close';
+    closeButtomElement.addEventListener('click', hideModal);
 
     let titleElement = document.createElement('h1');
     titleElement.innerText = title;
@@ -104,11 +105,32 @@ let pokemonRepository = (function() {
     modalContainer.appendChild(modal);
 
     modalContainer.classList.add('is-visible');
-  }
+
 
   document.querySelector('#show-modal').addEventListener ('click', () => {
     showModal('Modal Title', 'This is the modal content, what?');
-  });
+}
+//In order to close the modal...
+function hideModal() {
+  let modalContainer = document.querySelector('#modal-container');
+  modalContainer.classList.remove('is-visible');
+}
+
+    window.addEventListener('keydown', (e) => {
+      let modalContainer = document.querySelector('#modal-container');
+      if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+        hideModal();
+      }
+    });
+
+modalContainer.addEventListener('click', (e) => {
+    // Since this is also triggered when clicking INSIDE the modal
+    //We want to close if the user clicks directlz on the overlay
+  let target = e.target;
+  if (target === modalContainer) {
+    hideModal();
+  }
+});
 
 
   //the IIFE returns only an object with the same names for keys as values
