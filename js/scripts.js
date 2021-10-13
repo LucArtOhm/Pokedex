@@ -81,14 +81,35 @@ let pokemonRepository = (function() {
   }
 
   //function to show the modal
-  function showModal() {
+  function showModal(title, text) {
     let modalContainer = document.querySelector('#modal-container');
+    modalContainer.innerHTML = '';
+
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    let closeButtomElement = document.createElement('button');
+    closeButtomElement.classList.add('modal-close');
+    closeButtomElement.innerText = 'Close';
+
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = title;
+
+    let contentElement = document.createElement('p');
+    contentElement.innerText = text;
+
+    modal.appendChild(closeButtomElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
+    modalContainer.appendChild(modal);
+
     modalContainer.classList.add('is-visible');
   }
 
   document.querySelector('#show-modal').addEventListener ('click', () => {
-    showModal();
+    showModal('Modal Title', 'This is the modal content, what?');
   });
+
 
   //the IIFE returns only an object with the same names for keys as values
   return{
