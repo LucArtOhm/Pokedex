@@ -39,6 +39,9 @@ p, h1 {
 
 #modal-container {
   display: none;
+}
+
+#modal-container.is-visible {
   position: fixed;
   padding: 30px;
   box-sizing: border-box;
