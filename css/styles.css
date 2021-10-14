@@ -65,8 +65,7 @@ p, h1 {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.730);
-
-
+  
   /* to show it above other content */
   z-index: 999;
 

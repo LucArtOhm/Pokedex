@@ -23,7 +23,7 @@ let pokemonRepository = (function() {
     return pokemonList;
   }
 
-//new function to simplify the forEach loop
+  //new function to simplify the forEach loop
   function addListItem(pokemon){
     let pokemonList = document.querySelector ('.pokemon-list');
     let listpokemon = document.createElement('li');
@@ -72,15 +72,23 @@ let pokemonRepository = (function() {
     });
   }
 
-  //With this I should get the Pokemon's details logged to the console upon clicking its button as this function executes loadDetails function
-//   function showDetails(item){
-//     pokemonRepository.loadDetails(item).then(function () {
-//       console.log(item);
-//     });
-//   }
-//
+  // With this I should get the Pokemon's details logged to the console upon clicking its button as this function executes loadDetails function
+  function showDetails(item){
+    pokemonRepository.loadDetails(item).then(function () {
+      console.log(item);
+    });
+  }
+
 // //   //function to show the modal
-// //   let modalContainer = document.querySelector('#modal-container');
+  function showModal() {
+    let modalContainer = document.querySelector('#modal-container');
+    modalContainer.classList.add('is-visible');
+  }
+
+  document.querySelector('#show-modal').addEventListener('click', () => {
+    showModal();
+  });
+// //
 // //
 // //   function showModal(title, text) {
 // //     modalContainer.innerHTML = '';
