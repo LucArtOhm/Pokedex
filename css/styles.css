@@ -28,13 +28,28 @@ p, h1 {
   display: inline-block;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
-  cursor: pointer;
 }
 
 /* reduces the opacity of the button to 80% */
 .button-class:focus,
 .button-class:hover {
   opacity: 0.8;
+  cursor: pointer;
+}
+
+#show-modal,
+#show-dialog {
+  margin: 5px;
+  background-color: gold;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 6px 15px;
+  color: black;
+  font-size: 14px;
+  border: double;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 #modal-container {
