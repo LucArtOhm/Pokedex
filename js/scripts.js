@@ -79,18 +79,14 @@ let pokemonRepository = (function() {
     });
   }
 
-// //   //function to show the modal
+  //function to show the modal
   function showModal(title, text) {
     let modalContainer = document.querySelector('#modal-container');
-//     modalContainer.classList.add('is-visible');
-  // }
-
-// // //   function showModal(title, text) {
     modalContainer.innerHTML = '';
 
     let modal = document.createElement('div');
     modal.classList.add('modal');
-//
+
     //to close the modal with the close button
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
@@ -114,14 +110,25 @@ let pokemonRepository = (function() {
   document.querySelector('#show-modal').addEventListener('click', () => {
     showModal('Modal Title', 'This is the modal content!');
   });
-// //
-// // //In order to close the modal...
-// //   let dialogPromiseReject;
-// //
+
+  //Add promise to check whether a person has confirmed or not
+  document.querySelector('#show-dialog').addEventListener('click', () => {
+    showDialog('Confirm action', 'Are you sure you want to do this?').then(function() {
+      alert('confirmed!');
+    }, () => {
+      alert('not confirmed');
+    });
+  });
+
   function hideModal() {
     let modalContainer = document.querySelector('#modal-container');
     modalContainer.classList.remove('is-visible');
-// //
+
+    if (dialogPromiseReject) {
+      dialogPromiseReject();
+      dialogPromiseReject = null;
+    }
+
   //to close the modal with the Escape key
   window.addEventListener('keydown', (e) => {
     let modalContainer = document.querySelector('#modal-container');
@@ -133,68 +140,49 @@ let pokemonRepository = (function() {
   //to close the modal by clicking outside the modal
   modalContainer.addEventListener('click', (e) => {
     // Since this is also triggered when clicking INSIDE the modal
-    //We want to close if the user clicks directlz on the overlay
+    //We want to close if the user clicks directly on the overlay
     let target = e.target;
     if (target === modalContainer) {
       hideModal();
     }
   });
   }
-// //     if (dialogPromiseReject) {
-// //       dialogPromiseReject();
-// //       dialogPromiseReject = null;
-// //     }
 
-// //
-// //   function showDialog(title, text) {
-// //     showModal(title, text);
-// //   }
-// //
-// //     //Add a confirm and cancel button to the modalContainer
-// //     let modal = modalContainer.querySelector('.modal');
-// //
-// //     let confirmButton = document.createElement('button');
-// //     confirmButton.classList.add('modal-confirm');
-// //     confirmButton.innerText = 'Confirm';
-// //
-// //     let cancelButton = document.createElement('button');
-// //     cancelButton.classList.add('modal-cancel');
-// //     cancelButton.innerText = 'Cancel';
-// //
-// //     modal.appendChild(confirmButton);
-// //     modal.appendChild(cancelButton);
-// //
-// //     //Focus the confirmButton so that the user can simply press Enter
-// //     confirmButton.focus();
-// //
-// //     //In order to return the promise
-// //     return new Promise((resolve, reject) => {
-// //       cancelButton.addEventListener('click', hideModal);
-// //       confirmButton.addEventListener('click', () => {
-// //         dialogPromiseReject = null; //Reset this
-// //         hideModal();
-// //         resolve();
-// //       });
-// //       //This can be used to reject from other functions
-// //       dialogPromiseReject = reject;
-// //     });
-// //     }
-// //
-// //   //Add promise to check whether a person has confirmed or not
-// //   document.querySelector('#show-dialog').addEventListener('click', () => {
-// //     showDialog('Confirm action', 'Are you sure you want to do this?').then(function() {
-// //       alert('confirmed!');
-// //     }, () => {
-// //       alert('not confirmed');
-// //     });
-// //   });
-// //
-// //
+  //Add a second button do show a dialog
+  function showDialog(title, text) {
+    showModal(title, text);
 
-// //
-// // document.querySelector('#show-modal').addEventListener ('click', () => {
-// //   showModal('Modal Title', 'This is the modal content, what?');
-// // })
+    let modalContainer = document.querySelector('#modal-container');
+    //Add a confirm and cancel button to the modalContainer
+    let modal = modalContainer.querySelector('.modal');
+
+    let confirmButton = document.createElement('button');
+    confirmButton.classList.add('modal-confirm');
+    confirmButton.innerText = 'Confirm';
+
+    let cancelButton = document.createElement('button');
+    cancelButton.classList.add('modal-cancel');
+    cancelButton.innerText = 'Cancel';
+
+    modal.appendChild(confirmButton);
+    modal.appendChild(cancelButton);
+
+    //Focus the confirmButton so that the user can simply press Enter
+    confirmButton.focus();
+
+    //In order to return the promise
+    return new Promise((resolve, reject) => {
+      cancelButton.addEventListener('click', hideModal);
+      confirmButton.addEventListener('click', () => {
+        dialogPromiseReject = null; //Reset this
+        hideModal();
+        resolve();
+      });
+      //This can be used to reject from other functions
+      dialogPromiseReject = reject;
+    });
+    }
+
 
   //the IIFE returns only an object with the same names for keys as values
   return{
@@ -204,9 +192,7 @@ let pokemonRepository = (function() {
     loadList: loadList,
     loadDetails: loadDetails,
     showDetails: showDetails,
-    showModal: showModal
   };
-
 })();
 
 //Here comes the 'forEach' loop, now updated so that it is accessed throught the IIFE
