@@ -73,9 +73,9 @@ let pokemonRepository = (function() {
   }
 
   // With this I should get the Pokemon's details logged to the console upon clicking its button as this function executes loadDetails function
-  function showDetails(item){
-    pokemonRepository.loadDetails(item).then(function () {
-      console.log(item);
+  function showDetails(pokemon){
+    loadDetails(pokemon).then(function () {
+      showModal(pokemon);
     });
   }
 
@@ -192,6 +192,7 @@ let pokemonRepository = (function() {
     loadList: loadList,
     loadDetails: loadDetails,
     showDetails: showDetails,
+    showModal: showModal
   };
 })();
 
