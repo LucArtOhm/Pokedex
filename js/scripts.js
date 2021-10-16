@@ -1,5 +1,6 @@
 
 let pokemonRepository = (function() {
+  let modalContainer = document.querySelector('#modal-container');
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
@@ -96,7 +97,7 @@ let pokemonRepository = (function() {
 
   //function to show the modal
   function showModal(title, text) {
-    let modalContainer = document.querySelector('#modal-container');
+
     modalContainer.innerHTML = '';
 
     let modal = document.createElement('div');
@@ -136,7 +137,6 @@ let pokemonRepository = (function() {
   });
 
   function hideModal() {
-    let modalContainer = document.querySelector('#modal-container');
     modalContainer.classList.remove('is-visible');
 
     if (dialogPromiseReject) {
@@ -146,7 +146,6 @@ let pokemonRepository = (function() {
 
   //to close the modal with the Escape key
   window.addEventListener('keydown', (e) => {
-    let modalContainer = document.querySelector('#modal-container');
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
       hideModal();
     }
@@ -167,7 +166,6 @@ let pokemonRepository = (function() {
   function showDialog(title, text) {
     showModal(title, text);
 
-    let modalContainer = document.querySelector('#modal-container');
     //Add a confirm and cancel button to the modalContainer
     let modal = modalContainer.querySelector('.modal');
 
@@ -207,7 +205,7 @@ let pokemonRepository = (function() {
     loadList: loadList,
     loadDetails: loadDetails,
     showDetails: showDetails,
-    showModal: showModal
+    // showModal: showModal
   };
 })();
 
