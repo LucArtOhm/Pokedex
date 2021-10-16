@@ -38,11 +38,22 @@ let pokemonRepository = (function() {
     });
   }
 
+//Add functions for showing and hiding Loading Message - REVIEW
+  // function showLoadingMessage() {
+  //   document.querySelector('.loading-message').classList.add('visible');
+  // }
+  //
+  // function hideLoadingMessage() {
+  //   document.querySelector('.loading-message').classList.add('hidden');
+  // }
+
   //add loadList function to fetch data from API
   function loadList() {
+    // showLoadingMessage();
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
+      // hideLoadingMessage();
       json.results.forEach(function (item) {
         let pokemon = {
           name: item.name,
@@ -53,21 +64,25 @@ let pokemonRepository = (function() {
         add(pokemon);
       });
     }).catch(function (e) {
+      // hideLoadingMessage();
       console.error(e);
     });
   }
 
   // add loadDetails function to load the detailed data for a given Pokemon
   function loadDetails(item) {
+    // showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      //Now we add the details to the item
+      // hideLoadingMessage();
+      //Now we add the details to the items
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
     }).catch(function (e) {
+      // hideLoadingMessage();
       console.error (e);
     });
   }
