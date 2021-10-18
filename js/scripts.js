@@ -89,14 +89,14 @@ let pokemonRepository = (function() {
   }
 
   // With this I should get the Pokemon's details logged to the console upon clicking its button as this function executes loadDetails function
-  function showDetails(pokemon){
+  function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
       showModal(pokemon);
     });
   }
 
-  //function to show the modal
-  function showModal(title, text) {
+  // function to show the modal
+  function showModal(pokemon) {
 
     modalContainer.innerHTML = '';
 
@@ -106,35 +106,43 @@ let pokemonRepository = (function() {
     //to close the modal with the close button
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'Close';
+    closeButtonElement.innerText = 'X';
     closeButtonElement.addEventListener('click', hideModal);
 
     let titleElement = document.createElement('h1');
-    titleElement.innerText = title;
+    titleElement.innerText = pokemon.name;
 
-    let contentElement = document.createElement('p');
-    contentElement.innerText = text;
+    let heightElement = document.createElement('p');
+    heightElement.classList.add('pokemon-height');
+    heightElement.innerText = 'Height: ' + pokemon.height;
+
+    let imageElement = document.createElement('img');
+    imageElement.classList.add('pokemon-img');
+    imageElement.src = pokemon.imageUrl;
+
+
 
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
+    modal.appendChild(heightElement);
+    modal.appendChild(imageElement);
     modalContainer.appendChild(modal);
 
     modalContainer.classList.add('is-visible');
 }
 
-  document.querySelector('#show-modal').addEventListener('click', () => {
-    showModal('Modal Title', 'This is the modal content!');
-  });
+  // document.querySelector('#show-modal').addEventListener('click', () => {
+  //   showModal('Modal Title', 'This is the modal content!');
+  // });
 
-  //Add promise to check whether a person has confirmed or not
-  document.querySelector('#show-dialog').addEventListener('click', () => {
-    showDialog('Confirm action', 'Are you sure you want to do this?').then(function() {
-      alert('confirmed!');
-    }, () => {
-      alert('not confirmed');
-    });
-  });
+  // //Add promise to check whether a person has confirmed or not
+  // document.querySelector('#show-dialog').addEventListener('click', () => {
+  //   showDialog('Confirm action', 'Are you sure you want to do this?').then(function() {
+  //     alert('confirmed!');
+  //   }, () => {
+  //     alert('not confirmed');
+  //   });
+  // });
 
   function hideModal() {
     modalContainer.classList.remove('is-visible');
@@ -143,6 +151,7 @@ let pokemonRepository = (function() {
       dialogPromiseReject();
       dialogPromiseReject = null;
     }
+  }
 
   //to close the modal with the Escape key
   window.addEventListener('keydown', (e) => {
@@ -160,41 +169,41 @@ let pokemonRepository = (function() {
       hideModal();
     }
   });
-  }
+
 
   //Add a second button do show a dialog
-  function showDialog(title, text) {
-    showModal(title, text);
-
-    //Add a confirm and cancel button to the modalContainer
-    let modal = modalContainer.querySelector('.modal');
-
-    let confirmButton = document.createElement('button');
-    confirmButton.classList.add('modal-confirm');
-    confirmButton.innerText = 'Confirm';
-
-    let cancelButton = document.createElement('button');
-    cancelButton.classList.add('modal-cancel');
-    cancelButton.innerText = 'Cancel';
-
-    modal.appendChild(confirmButton);
-    modal.appendChild(cancelButton);
-
-    //Focus the confirmButton so that the user can simply press Enter
-    confirmButton.focus();
-
-    //In order to return the promise
-    return new Promise((resolve, reject) => {
-      cancelButton.addEventListener('click', hideModal);
-      confirmButton.addEventListener('click', () => {
-        dialogPromiseReject = null; //Reset this
-        hideModal();
-        resolve();
-      });
-      //This can be used to reject from other functions
-      dialogPromiseReject = reject;
-    });
-    }
+  // function showDialog(title, text) {
+  //   showModal(title, text);
+  //
+  //   //Add a confirm and cancel button to the modalContainer
+  //   let modal = modalContainer.querySelector('.modal');
+  //
+  //   let confirmButton = document.createElement('button');
+  //   confirmButton.classList.add('modal-confirm');
+  //   confirmButton.innerText = 'Confirm';
+  //
+  //   let cancelButton = document.createElement('button');
+  //   cancelButton.classList.add('modal-cancel');
+  //   cancelButton.innerText = 'Cancel';
+  //
+  //   modal.appendChild(confirmButton);
+  //   modal.appendChild(cancelButton);
+  //
+  //   //Focus the confirmButton so that the user can simply press Enter
+  //   confirmButton.focus();
+  //
+  //   //In order to return the promise
+  //   return new Promise((resolve, reject) => {
+  //     cancelButton.addEventListener('click', hideModal);
+  //     confirmButton.addEventListener('click', () => {
+  //       dialogPromiseReject = null; //Reset this
+  //       hideModal();
+  //       resolve();
+  //     });
+  //     //This can be used to reject from other functions
+  //     dialogPromiseReject = reject;
+  //   });
+  //   }
 
 
   //the IIFE returns only an object with the same names for keys as values

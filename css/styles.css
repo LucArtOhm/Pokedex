@@ -4,10 +4,15 @@ body {
   font-size: 20px;
   font-family: "Merienda One";
   text-align: center;
+  text-transform: capitalize;
 }
 
-p, h1 {
+p, h1, {
   text-align: center;
+}
+
+.pokemon-img {
+  align-self: center;
 }
 
 .pokemon-list {
@@ -65,7 +70,7 @@ p, h1 {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.730);
-  
+
   /* to show it above other content */
   z-index: 999;
 
