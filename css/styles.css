@@ -47,7 +47,7 @@ p, h1, {
   cursor: pointer;
 }
 
-#show-modal,
+/* #show-modal,
 #show-dialog {
   margin: 5px;
   background-color: gold;
@@ -115,4 +115,4 @@ p, h1, {
 .modal p {
   margin-bottom: 0;
   color: gold;
-}
+} */
