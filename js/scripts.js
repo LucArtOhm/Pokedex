@@ -4,7 +4,7 @@ let pokemonRepository = (function() {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-  //Sort the Pokemon alphabetically
+  // // Sort the Pokemon alphabetically
   // const pokemonList = [];
   // pokemonList.sort(up);
 
@@ -22,10 +22,10 @@ let pokemonRepository = (function() {
   }
   function getAll(){
     return pokemonList;
-  }
+  };
 
   //new function to simplify the forEach loop
-  function addListItem(pokemon){
+  function addListItem(pokemon) {
     let pokemonList = document.querySelector ('.pokemon-list');
     let listpokemon = document.createElement('li');
     let button = document.createElement('button');
@@ -39,7 +39,7 @@ let pokemonRepository = (function() {
     });
   }
 
-//Add functions for showing and hiding Loading Message - REVIEW
+  // // Add functions for showing and hiding Loading Message - REVIEW
   // function showLoadingMessage() {
   //   document.querySelector('.loading-message').classList.add('visible');
   // }
@@ -120,8 +120,6 @@ let pokemonRepository = (function() {
     imageElement.classList.add('pokemon-img');
     imageElement.src = pokemon.imageUrl;
 
-
-
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
     modal.appendChild(heightElement);
@@ -130,19 +128,6 @@ let pokemonRepository = (function() {
 
     modalContainer.classList.add('is-visible');
 }
-
-  // document.querySelector('#show-modal').addEventListener('click', () => {
-  //   showModal('Modal Title', 'This is the modal content!');
-  // });
-
-  // //Add promise to check whether a person has confirmed or not
-  // document.querySelector('#show-dialog').addEventListener('click', () => {
-  //   showDialog('Confirm action', 'Are you sure you want to do this?').then(function() {
-  //     alert('confirmed!');
-  //   }, () => {
-  //     alert('not confirmed');
-  //   });
-  // });
 
   function hideModal() {
     modalContainer.classList.remove('is-visible');
@@ -169,41 +154,6 @@ let pokemonRepository = (function() {
       hideModal();
     }
   });
-
-
-  //Add a second button do show a dialog
-  // function showDialog(title, text) {
-  //   showModal(title, text);
-  //
-  //   //Add a confirm and cancel button to the modalContainer
-  //   let modal = modalContainer.querySelector('.modal');
-  //
-  //   let confirmButton = document.createElement('button');
-  //   confirmButton.classList.add('modal-confirm');
-  //   confirmButton.innerText = 'Confirm';
-  //
-  //   let cancelButton = document.createElement('button');
-  //   cancelButton.classList.add('modal-cancel');
-  //   cancelButton.innerText = 'Cancel';
-  //
-  //   modal.appendChild(confirmButton);
-  //   modal.appendChild(cancelButton);
-  //
-  //   //Focus the confirmButton so that the user can simply press Enter
-  //   confirmButton.focus();
-  //
-  //   //In order to return the promise
-  //   return new Promise((resolve, reject) => {
-  //     cancelButton.addEventListener('click', hideModal);
-  //     confirmButton.addEventListener('click', () => {
-  //       dialogPromiseReject = null; //Reset this
-  //       hideModal();
-  //       resolve();
-  //     });
-  //     //This can be used to reject from other functions
-  //     dialogPromiseReject = reject;
-  //   });
-  //   }
 
 
   //the IIFE returns only an object with the same names for keys as values
