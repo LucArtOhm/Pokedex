@@ -39,7 +39,7 @@ let pokemonRepository = (function() {
     });
   }
 
-  //Add functions for showing and hiding Loading Message - REVIEW
+//Add functions for showing and hiding Loading Message - REVIEW
   // function showLoadingMessage() {
   //   document.querySelector('.loading-message').classList.add('visible');
   // }
