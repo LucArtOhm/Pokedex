@@ -4,10 +4,6 @@ let pokemonRepository = (function() {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-  // // Sort the Pokemon alphabetically
-  // const pokemonList = [];
-  // pokemonList.sort(up);
-
   function add(pokemon) {
     if (
       typeof pokemon === 'object' &&
@@ -46,8 +42,6 @@ let pokemonRepository = (function() {
     button.addEventListener ('click', function () {
       showDetails(pokemon);
     });
-
-
   }
 
   //add loadList function to fetch data from API
@@ -56,7 +50,6 @@ let pokemonRepository = (function() {
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
-      // hideLoadingMessage();
       json.results.forEach(function (item) {
         let pokemon = {
           name: item.name,
@@ -67,25 +60,22 @@ let pokemonRepository = (function() {
         add(pokemon);
       });
     }).catch(function (e) {
-      // hideLoadingMessage();
       console.error(e);
     });
   }
 
   // add loadDetails function to load the detailed data for a given Pokemon
   function loadDetails(item) {
-    // showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      // hideLoadingMessage();
+
       //Now we add the details to the items
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
     }).catch(function (e) {
-      // hideLoadingMessage();
       console.error (e);
     });
   }
