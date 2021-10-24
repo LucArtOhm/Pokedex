@@ -27,16 +27,27 @@ let pokemonRepository = (function() {
   //new function to simplify the forEach loop
   function addListItem(pokemon) {
     let pokemonList = document.querySelector ('.pokemon-list');
-    let listpokemon = document.createElement('li');
+    let listPokemon = document.createElement('li');
+    listPokemon.classList.add('group-list-item', 'col-lg-6', 'col-md-4', 'col-sm-2');
+
     let button = document.createElement('button');
     button.innerText = pokemon.name;
-    button.classList.add('button-class');
-    listpokemon.appendChild(button);
-    pokemonList.appendChild(listpokemon);
+    button.classList.add('btn', 'btn-warning', 'btn-block');
+
+    //link buttons to modalContainer
+    button.setAttribute('data-target', '#modalContainer');
+    button.setAttribute('data-toggle', 'modal');
+
+
+    listPokemon.appendChild(button);
+    pokemonList.appendChild(listPokemon);
+
     //Add event 'click' listener
-    button.addEventListener ('click', function (event) {
+    button.addEventListener ('click', function () {
       showDetails(pokemon);
     });
+
+
   }
 
   // // Add functions for showing and hiding Loading Message - REVIEW
