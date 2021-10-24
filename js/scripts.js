@@ -50,15 +50,6 @@ let pokemonRepository = (function() {
 
   }
 
-  // // Add functions for showing and hiding Loading Message - REVIEW
-  // function showLoadingMessage() {
-  //   document.querySelector('.loading-message').classList.add('visible');
-  // }
-  //
-  // function hideLoadingMessage() {
-  //   document.querySelector('.loading-message').classList.add('hidden');
-  // }
-
   //add loadList function to fetch data from API
   function loadList() {
     // showLoadingMessage();
