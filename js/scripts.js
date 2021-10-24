@@ -74,7 +74,7 @@ let pokemonRepository = (function() {
       //Now we add the details to the items
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
-      item.types = details.types;
+      item.type = details.types;
     }).catch(function (e) {
       console.error (e);
     });
@@ -92,37 +92,34 @@ let pokemonRepository = (function() {
   // function to show the modal
   function showModal(pokemon) {
 
+    let modalHeader = $('.modal-header');
     let modalTitle = $('.modal-title');
     let modalBody = $('.modal-body');
 
     modalTitle.empty();
-    modlBody.empty();
+    modalBody.empty();
 
-    let titleElement = document.createElement('h1');
-    titleElement.innerText = pokemon.name;
-    nameElement.classList.add('name-element');
+    let titleElement = $('<h1>' + pokemon.name + '</h1>');
+    //
+    let heightElement = $('<p>' + 'Height: ' + pokemon.height + '</p>');
+    //
+    // let imageElement = $('<img class='modal-img'>');
+    // imageElement.attr('src', pokemon.imageUrl);
 
-    let heightElement = document.createElement('p');
-    heightElement.classList.add('pokemon-height');
-    heightElement.innerText = 'Height: ' + pokemon.height;
 
-    let imageElement = document.createElement('img');
-    imageElement.classList.add('pokemon-img');
-    imageElement.src = pokemon.imageUrl;
-
-    let pokemonTypes = [];
-			Object.keys(pokemon.types).forEach(key => {
-				pokemonTypes.push(' ' + pokemon.types[key].type.name);
-			});
-		let typesElement = document.createElement('p');
-		typesElement.innerText = 'Type: ' + pokemonTypes;
-		typesElement.classList.add('types-element');
+    // let pokemonTypes = [];
+		// 	Object.keys(pokemon.types).forEach(key => {
+		// 		pokemonTypes.push(' ' + pokemon.types[key].types.name);
+		// 	});
+		// let typesElement = document.createElement('p');
+		// typesElement.innerText = 'Type: ' + pokemonTypes;
+		// typesElement.classList.add('types-element');
 
 
     modalTitle.append(titleElement);
     modalBody.append(heightElement);
-    modalBody.append(imageElement);
-    modalBody.append(typesElement);
+    // modalBody.append(imageElement);
+    // modalBody.append(typesElement);
 
     modalContainer.classList.add('is-visible');
 }
