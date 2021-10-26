@@ -115,7 +115,10 @@ let pokemonRepository = (function() {
     modalBody.append(weightElement);
 }
 
-
+function find(pokemonName) {
+  let result = pokemonList.filter(pokemon => pokemon.name === pokemonName);
+  console.log(result[0]);
+}
 
 
   //the IIFE returns only an object with the same names for keys as values
@@ -127,6 +130,7 @@ let pokemonRepository = (function() {
     loadDetails: loadDetails,
     showDetails: showDetails,
     showModal: showModal,
+    find: find,
   };
 })();
 
