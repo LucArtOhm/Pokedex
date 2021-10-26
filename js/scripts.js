@@ -104,15 +104,6 @@ let pokemonRepository = (function() {
 
     let weightElement = $('<p>' + 'Weight: ' + pokemon.weight + ' ' + 'lbs.' + '</p>');
 
-    let pokemonTypes = [];
-
-    			Object.keys(pokemon.types).forEach(key => {
-    				pokemonTypes.push(' ' + pokemon.types[key].type.name);
-    			});
-
-    let typesElement = $('<p>' + 'Types: ' + pokemon.types + '</p>');
-
-
     let imageElement = document.createElement('img');
     imageElement.classList.add('pokemon-img');
     imageElement.src = pokemon.imageUrl;
@@ -122,7 +113,6 @@ let pokemonRepository = (function() {
     modalBody.append(heightElement);
     modalBody.append(imageElement);
     modalBody.append(weightElement);
-    modalBody.append(typesElement);
 }
 
 
