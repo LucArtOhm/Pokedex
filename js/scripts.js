@@ -31,7 +31,7 @@ let pokemonRepository = (function() {
     button.classList.add('btn', 'btn-warning', 'btn-block');
 
     //link buttons to modalContainer
-    button.setAttribute('data-target', '#modalContainer');
+    button.setAttribute('data-target', '#modal-container');
     button.setAttribute('data-toggle', 'modal');
 
 
@@ -46,7 +46,6 @@ let pokemonRepository = (function() {
 
   //add loadList function to fetch data from API
   function loadList() {
-    // showLoadingMessage();
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
@@ -55,7 +54,8 @@ let pokemonRepository = (function() {
           name: item.name,
           detailsUrl: item.url,
           height: item.height,
-          types: item.types
+          types: item.types,
+          weight: item.weight
         };
         add(pokemon);
       });
@@ -72,9 +72,10 @@ let pokemonRepository = (function() {
     }).then(function (details) {
 
       //Now we add the details to the items
-      item.imageUrl = details.sprites.front_default;
+      item.imageUrl = details.sprites.other.dream_world.front_default;
       item.height = details.height;
-      item.type = details.types;
+      item.types = details.types;
+      item.weight = details.weight;
     }).catch(function (e) {
       console.error (e);
     });
@@ -87,8 +88,6 @@ let pokemonRepository = (function() {
     });
   }
 
-  let modalContainer = document.querySelector('#modal-container');
-
   // function to show the modal
   function showModal(pokemon) {
 
@@ -100,56 +99,21 @@ let pokemonRepository = (function() {
     modalBody.empty();
 
     let titleElement = $('<h1>' + pokemon.name + '</h1>');
-    //
-    let heightElement = $('<p>' + 'Height: ' + pokemon.height + '</p>');
-    //
+
+    let heightElement = $('<p>' + 'Height: ' + pokemon.height + ' ' + '\'' + '</p>');
+
+    let weightElement = $('<p>' + 'Weight: ' + pokemon.weight + ' ' + 'lbs.' + '</p>');
+
     let imageElement = document.createElement('img');
     imageElement.classList.add('pokemon-img');
     imageElement.src = pokemon.imageUrl;
 
-
-    // let pokemonTypes = [];
-		// 	Object.keys(pokemon.types).forEach(key => {
-		// 		pokemonTypes.push(' ' + pokemon.types[key].types.name);
-		// 	});
-		// let typesElement = document.createElement('p');
-		// typesElement.innerText = 'Type: ' + pokemonTypes;
-		// typesElement.classList.add('types-element');
-
-
     modalTitle.append(titleElement);
     modalBody.append(heightElement);
     modalBody.append(imageElement);
-    // modalBody.append(typesElement);
-
-    modalContainer.classList.add('is-visible');
+    modalBody.append(weightElement);
 }
 
-  function hideModal() {
-    modalContainer.classList.remove('is-visible');
-
-    // if (dialogPromiseReject) {
-    //   dialogPromiseReject();
-    //   dialogPromiseReject = null;
-    // }
-  }
-
-  //to close the modal with the Escape key
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-      hideModal();
-    }
-  });
-
-  //to close the modal by clicking outside the modal
-  modalContainer.addEventListener('click', (e) => {
-    // Since this is also triggered when clicking INSIDE the modal
-    //We want to close if the user clicks directly on the overlay
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    }
-  });
 
 
   //the IIFE returns only an object with the same names for keys as values
@@ -161,7 +125,6 @@ let pokemonRepository = (function() {
     loadDetails: loadDetails,
     showDetails: showDetails,
     showModal: showModal,
-    hideModal: hideModal,
   };
 })();
 
